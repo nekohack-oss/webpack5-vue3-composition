@@ -2,6 +2,7 @@ const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { DefinePlugin } = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = (env) => {
@@ -87,6 +88,9 @@ module.exports = (env) => {
         filename: 'index.html',
         template: '../index.html',
         inject: true
+      }),
+      new DefinePlugin({
+        __VUE_OPTIONS_API__: false
       }),
       new MiniCssExtractPlugin({
         filename: isProduction ? '[name].[hash].css' : '[name].css'
